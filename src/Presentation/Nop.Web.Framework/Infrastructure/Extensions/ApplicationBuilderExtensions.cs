@@ -363,11 +363,9 @@ namespace Nop.Web.Framework.Infrastructure.Extensions
                 options.SupportedUICultures = cultures;
                 options.DefaultRequestCulture = new RequestCulture(cultures.FirstOrDefault());
                 options.ApplyCurrentCultureToResponseHeaders = true;
-                
-                var localizationSettings = EngineContext.Current.Resolve<LocalizationSettings>();
 
-                options.AddInitialRequestCultureProvider(new NopHeaderRequestCultureProvider(localizationSettings));
-                options.AddInitialRequestCultureProvider(new NopSeoUrlCultureProvider(localizationSettings));
+                options.AddInitialRequestCultureProvider(new NopHeaderRequestCultureProvider());
+                options.AddInitialRequestCultureProvider(new NopSeoUrlCultureProvider());
             });
         }
 
