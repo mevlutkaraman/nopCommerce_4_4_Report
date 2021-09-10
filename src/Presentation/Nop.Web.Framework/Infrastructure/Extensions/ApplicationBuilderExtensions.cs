@@ -17,6 +17,7 @@ using Microsoft.Net.Http.Headers;
 using Nop.Core;
 using Nop.Core.Configuration;
 using Nop.Core.Domain.Common;
+using Nop.Core.Domain.Localization;
 using Nop.Core.Infrastructure;
 using Nop.Data;
 using Nop.Data.Migrations;
@@ -352,6 +353,8 @@ namespace Nop.Web.Framework.Infrastructure.Extensions
                 if (!await DataSettingsManager.IsDatabaseInstalledAsync())
                     return;
 
+
+
                 //prepare supported cultures
                 var cultures = (await EngineContext.Current.Resolve<ILanguageService>().GetAllLanguagesAsync())
                     .OrderBy(language => language.DisplayOrder)
@@ -359,8 +362,12 @@ namespace Nop.Web.Framework.Infrastructure.Extensions
                 options.SupportedCultures = cultures;
                 options.SupportedUICultures = cultures;
                 options.DefaultRequestCulture = new RequestCulture(cultures.FirstOrDefault());
+                options.ApplyCurrentCultureToResponseHeaders = true;
+                
+                var localizationSettings = EngineContext.Current.Resolve<LocalizationSettings>();
 
-                options.AddInitialRequestCultureProvider(new NopRequestCultureProvider());
+                options.AddInitialRequestCultureProvider(new NopHeaderRequestCultureProvider(localizationSettings));
+                options.AddInitialRequestCultureProvider(new NopSeoUrlCultureProvider(localizationSettings));
             });
         }
 

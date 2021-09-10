@@ -304,7 +304,7 @@ namespace Nop.Web.Framework
 
             await _genericAttributeService.SaveAttributeAsync(customer, NopCustomerDefaults.LanguageIdAttribute, language?.Id ?? 0, store.Id);
 
-            var response = _httpContextAccessor.HttpContext.Response;
+            var response = _httpContextAccessor.HttpContext?.Response;
 
             if (response is not null)
             {

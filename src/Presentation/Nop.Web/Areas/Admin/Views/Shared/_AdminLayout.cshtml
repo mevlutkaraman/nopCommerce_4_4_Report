@@ -20,8 +20,8 @@
     //Kendo UI
     var kendoVersion = "2020.1.406";
 
-    var currentCultureName = Html.GetUICultureName();
-    var currentLanguageCode = Html.GetTwoLetterIsoLanguageName();
+    var currentCultureName = CultureInfo.CurrentCulture.Name;
+    var currentUICultureName = CultureInfo.CurrentUICulture.Name;
 
     //Code to get check if current cultures scripts are exists. If not, select parent cultures scripts
     string GetDefaultLocale()
@@ -32,8 +32,8 @@
 
         if (fileProvider.DirectoryExists(fileProvider.Combine(WebHostEnvironment.WebRootPath, string.Format(localePattern, currentCultureName))))
             cultureToUse = currentCultureName;
-        else if (fileProvider.DirectoryExists(fileProvider.Combine(WebHostEnvironment.WebRootPath, string.Format(localePattern, currentLanguageCode))))
-            cultureToUse = currentLanguageCode;
+        else if (fileProvider.DirectoryExists(fileProvider.Combine(WebHostEnvironment.WebRootPath, string.Format(localePattern, CultureInfo.CurrentCulture.TwoLetterISOLanguageName))))
+            cultureToUse = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
         return cultureToUse;
     }
@@ -71,10 +71,10 @@
     Html.AppendScriptParts($"~/lib_npm/datatables.net-bs4/js/dataTables.bootstrap4.min.js");
     Html.AppendScriptParts($"~/lib_npm/datatables.net/js/jquery.dataTables.min.js");
     Html.AppendScriptParts($"~/lib/kendo/{kendoVersion}/js/cultures/kendo.culture.{currentCultureName}.min.js");
-    var fileInfo = fileProvider.GetFileInfo($"{WebHostEnvironment.WebRootPath}/lib/kendo/{kendoVersion}/js/messages/kendo.messages.{currentCultureName}.min.js");
+    var fileInfo = fileProvider.GetFileInfo($"{WebHostEnvironment.WebRootPath}/lib/kendo/{kendoVersion}/js/messages/kendo.messages.{currentUICultureName}.min.js");
     @if (fileInfo.Exists)
     {
-        Html.AppendScriptParts($"~/lib/kendo/{kendoVersion}/js/messages/kendo.messages.{currentCultureName}.min.js");
+        Html.AppendScriptParts($"~/lib/kendo/{kendoVersion}/js/messages/kendo.messages.{currentUICultureName}.min.js");
     }
     else
     {
@@ -128,7 +128,7 @@
     //info: we specify "Admin" area for actions and widgets here for cases when we use this layout in a plugin that is running in a different area than "admin"
 }
 <!DOCTYPE html>
-<html lang="@Html.GetTwoLetterIsoLanguageName()" dir="@dir">
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="@dir">
 <head>
     <title>@adminPageTitle</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
@@ -323,7 +323,7 @@
                                 <div class="col-md-4 col-xs-12"></div>
                             }
                             <div class="col-md-4 col-xs-12 text-center">
-                                @((await dateTimeHelper.ConvertToUserTimeAsync(DateTime.Now)).ToString("f", CultureInfo.CurrentUICulture))
+                                @((await dateTimeHelper.ConvertToUserTimeAsync(DateTime.Now)).ToString("f", CultureInfo.CurrentCulture))
                             </div>
                             <div class="col-md-4 col-xs-12 text-md-right text-center">
                                 <b>nopCommerce version @NopVersion.FULL_VERSION</b>

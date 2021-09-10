@@ -313,25 +313,5 @@ namespace Nop.Web.Extensions
 
             return CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? "rtl" : "ltr";
         }
-
-        /// <summary>
-        /// Get a two-letter code for the language of the current UI culture
-        /// </summary>
-        /// <param name="html">HTML helper</param>
-        /// <returns>The ISO 639-1 two-letter code</returns>
-        public static string GetTwoLetterIsoLanguageName(this IHtmlHelper html)
-        {
-            return CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-        }
-
-        /// <summary>
-        /// Get the current UI culture name
-        /// </summary>
-        /// <param name="html">HTML helper</param>
-        /// <returns>The culture name in the format languagecode2-country/regioncode2</returns>
-        public static string GetUICultureName(this IHtmlHelper html)
-        {
-            return CultureInfo.CurrentUICulture.Name;
-        }
     }
 }
