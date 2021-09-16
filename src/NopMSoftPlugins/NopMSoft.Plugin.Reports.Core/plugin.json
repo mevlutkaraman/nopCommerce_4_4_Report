@@ -1,0 +1,11 @@
+﻿{
+  "Group": "NopMSoft Reports",
+  "FriendlyName": "NopMSoft Report Core",
+  "SystemName": "NopMSoft.Reports.Core",
+  "Version": "1.28",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "NopMSoft team",
+  "DisplayOrder": 1,
+  "FileName": "NopMSoft.Plugin.Reports.Core.dll",
+  "Description": "This plugin report core"
+}

@@ -1,0 +1,11 @@
+﻿{
+  "Group": "NopMSoft Reports",
+  "FriendlyName": "NopMSoft Products Without Description Report",
+  "SystemName": "NopMSoft.Reports.ProductsWithoutDescription",
+  "Version": "1.28",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "NopMSoft team",
+  "DisplayOrder": 1,
+  "FileName": "NopMSoft.Plugin.Reports.ProductsWithoutDescription.dll",
+  "Description": "This plugin products without description report"
+}
