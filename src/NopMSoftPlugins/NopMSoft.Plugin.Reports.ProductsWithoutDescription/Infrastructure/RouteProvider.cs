@@ -22,12 +22,12 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Infrastructure
         public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
         {
             endpointRouteBuilder.MapControllerRoute(ProductsWithoutDescriptionReportDefults.ConfigurationRouteName,
-             "Plugins/ReportProductsWithoutDescription/Configure",
-                 new { controller = "RProductsWithoutDescriptionConfigureController", action = "Configure", area = AreaNames.Admin });
+             "Admin/Plugins/Reports/ProductsWithoutDescription/Configure",
+                 new { controller = "RProductsWithoutDescriptionConfigure", action = "Configure", area = AreaNames.Admin });
 
             endpointRouteBuilder.MapControllerRoute(ProductsWithoutDescriptionReportDefults.ReportListRouteName,
-              "Plugins/ReportProductsWithoutDescription/List",
-                new { controller = "RProductsWithoutDescriptionAdminController", action = "List", area = AreaNames.Admin });
+              "Admin/Plugins/Reports/ProductsWithoutDescription/List",
+                new { controller = "RProductsWithoutDescription", action = "List", area = AreaNames.Admin });
         }
 
         /// <summary>

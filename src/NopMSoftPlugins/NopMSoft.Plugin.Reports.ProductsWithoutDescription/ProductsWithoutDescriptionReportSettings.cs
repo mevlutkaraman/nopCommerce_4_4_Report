@@ -13,8 +13,10 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription
     public class ProductsWithoutDescriptionReportSettings : ISettings
     {
         /// <summary>
-        ///Gets or sets report enabled value. 
+        ///Gets or sets report schedule task enabled value. 
         /// </summary>
-        public bool Enabled { get; set; }
+        public bool ScheduleTaskEnabled { get; set; }
+
     }
+
 }

@@ -13,8 +13,8 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Configure
     {
         public int ActiveStoreScopeConfiguration { get; set; }
 
-        [NopResourceDisplayName("Plugins.Reports.ProductsWithoutDescription.Fields.Enabled")]
-        public bool Enabled { get; set; }
-        public bool Enabled_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Plugins.Reports.ProductsWithoutDescription.Fields.ScheduleTaskEnabled")]
+        public bool ScheduleTaskEnabled { get; set; }
+        public bool ScheduleTaskEnabled_OverrideForStore { get; set; }
     }
 }

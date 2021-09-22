@@ -7,18 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Admin.Reports
+namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Reports
 {
     public record ReportSearchModel : BaseSearchModel
     {
-        #region Ctor
-
-        public ReportSearchModel()
-        {
-
-        }
-
-        #endregion
 
         #region Properties  
 
@@ -49,9 +41,11 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Admin.Report
         [NopResourceDisplayName("Admin.Catalog.Products.List.SearchPublished")]
         public int PublishedId { get; set; }
 
-        [NopResourceDisplayName("Plugins.Reports.ProductsWithoutDescription.List.Sku")]
+        [NopResourceDisplayName("Plugins.NopMSoft.Reports.ProductsWithoutDescription.List.SearchSku")]
         public string Sku { get; set; }
 
+        [NopResourceDisplayName("Plugins.NopMSoft.Reports.ProductsWithoutDescription.List.SearchWithoutDescriptionType")]
+        public int WithoutDescriptionTypeId { get; set; }
 
         public IList<SelectListItem> AvailableCategories { get; set; } = new List<SelectListItem>();
 
@@ -67,6 +61,7 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Admin.Report
 
         public IList<SelectListItem> AvailablePublishedOptions { get; set; } = new List<SelectListItem>();
 
+        public IList<SelectListItem> AvailableWithoutDescriptionTypes { get; set; } = new List<SelectListItem>();
 
         public bool HideStoresList { get; set; }
 
@@ -75,6 +70,8 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Admin.Report
         public bool HideVendorsList { get; set; }
 
         public bool HideWarehousesList { get; set; }
+
+        public bool HideCategoriesList { get; set; }
 
         #endregion
     }

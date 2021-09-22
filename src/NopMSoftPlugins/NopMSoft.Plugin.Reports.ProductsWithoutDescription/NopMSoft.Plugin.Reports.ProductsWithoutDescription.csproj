@@ -21,6 +21,7 @@
     <None Remove="logo.jpg" />
     <None Remove="plugin.json" />
     <None Remove="Views\Configure\Configure.cshtml" />
+    <None Remove="Views\Reports\List.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
   </ItemGroup>
 
@@ -32,6 +33,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Configure\Configure.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Reports\List.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\_ViewImports.cshtml">

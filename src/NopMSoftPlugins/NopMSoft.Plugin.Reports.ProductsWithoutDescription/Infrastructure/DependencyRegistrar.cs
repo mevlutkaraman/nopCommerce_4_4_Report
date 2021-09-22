@@ -23,6 +23,7 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Infrastructure
         {
             //Services
             services.AddScoped<IProductReportService, ProductReportService>();
+            services.AddScoped<IExportManager, ExportManager>();
 
             //Factories
             services.AddScoped<IReportModelFactory, ReportModelFactory>();

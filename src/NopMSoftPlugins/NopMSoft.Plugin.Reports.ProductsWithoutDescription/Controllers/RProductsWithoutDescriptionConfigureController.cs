@@ -61,12 +61,12 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Controllers
 
             var model = new ConfigurationModel
             {
-                Enabled = productsWithoutDescriptionReportSettings.Enabled,
+                ScheduleTaskEnabled = productsWithoutDescriptionReportSettings.ScheduleTaskEnabled,
             };
 
             if (storeScope > 0)
             {
-                model.Enabled_OverrideForStore = await _settingService.SettingExistsAsync(productsWithoutDescriptionReportSettings, x => x.Enabled, storeScope);
+                model.ScheduleTaskEnabled_OverrideForStore = await _settingService.SettingExistsAsync(productsWithoutDescriptionReportSettings, x => x.ScheduleTaskEnabled, storeScope);
             }
 
             return View("~/Plugins/NopMSoft.Reports.ProductsWithoutDescription/Views/Configure/Configure.cshtml", model);
@@ -86,13 +86,13 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Controllers
             var productsWithoutDescriptionReportSettings = await _settingService.LoadSettingAsync<ProductsWithoutDescriptionReportSettings>(storeScope);
 
             //save settings
-            productsWithoutDescriptionReportSettings.Enabled = model.Enabled;
+            productsWithoutDescriptionReportSettings.ScheduleTaskEnabled = model.ScheduleTaskEnabled;
 
             /* We do not clear cache after each setting update.
              * This behavior can increase performance because cached settings will not be cleared 
              * and loaded from database after each update */
 
-            await _settingService.SaveSettingOverridablePerStoreAsync(productsWithoutDescriptionReportSettings, x => x.Enabled, model.Enabled_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(productsWithoutDescriptionReportSettings, x => x.ScheduleTaskEnabled, model.ScheduleTaskEnabled_OverrideForStore, storeScope, false);
             
 
             //now clear settings cache

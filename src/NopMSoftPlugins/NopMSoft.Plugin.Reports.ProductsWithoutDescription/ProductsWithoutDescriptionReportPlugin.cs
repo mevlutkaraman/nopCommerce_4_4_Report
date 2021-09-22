@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Plugins;
@@ -86,6 +87,17 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription
                 };
                 reportsNode.ChildNodes.Add(catalogNode);
             }
+
+            var reportNode = new SiteMapNode
+            {
+                Visible = true,
+                Title = await _localizationService.GetResourceAsync("Plugins.NopMSoft.Reports.ProductsWithoutDescription"),
+                IconClass = "far fa-dot-circle",
+                SystemName = "ProductsWithoutDescriptionReport",
+                RouteValues = new RouteValueDictionary { { "Area", "Admin" } },
+                Url= _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext).RouteUrl(ProductsWithoutDescriptionReportDefults.ReportListRouteName),
+            };
+            catalogNode.ChildNodes.Add(reportNode);
         }
 
         public override async Task InstallAsync()
@@ -93,10 +105,16 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription
             //Locales
             await _localizationService.AddLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["Plugins.Reports.ProductsWithoutDescription.List.Sku"] = "Sku",
                 ["Plugins.NopMSoft"] = "NopMSoft",
                 ["Plugins.NopMSoft.Reports"] = "Reports",
                 ["Plugins.NopMSoft.Reports.Catalog"] = "Catalog",
+                ["Plugins.NopMSoft.Reports.ProductsWithoutDescription"] = "Products Without Description",
+                ["Plugins.Reports.ProductsWithoutDescription.Fields.ScheduleTaskEnabled"] = "Schedule task enabled",
+                ["Plugins.NopMSoft.Reports.ProductsWithoutDescription.List.SearchSku"] = "Sku",
+                ["Plugins.NopMSoft.Reports.ProductsWithoutDescription.List.SearchWithoutDescriptionType"] = "Without description type",
+                ["Plugins.NopMSoft.Reports.ProductsWithoutDescription.List.SearchWithoutDescriptionType.All"] = "All",
+                ["Enums.NopMSoft.Plugin.Reports.ProductsWithoutDescription.Services.WithoutDescriptionType.ShortDescriptionOnly"] = "Short description only",
+                ["Enums.NopMSoft.Plugin.Reports.ProductsWithoutDescription.Services.WithoutDescriptionType.FullDescriptionOnly"] = "Full description only",
             });
 
             await  base.InstallAsync();
@@ -108,7 +126,8 @@ namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription
             await _settingService.DeleteSettingAsync<ProductsWithoutDescriptionReportSettings>();
 
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("Plugins.Reports.ProductsWithoutDescription.List.Sku");
+            await _localizationService.DeleteLocaleResourceAsync("Plugins.Reports.ProductsWithoutDescription.List.Sku");
+            await _localizationService.DeleteLocaleResourceAsync("Plugins.NopMSoft.Reports.ProductsWithoutDescription");
 
             await base.UninstallAsync();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Admin.Reports;
+using NopMSoft.Plugin.Reports.ProductsWithoutDescription.Models.Reports;
 
 namespace NopMSoft.Plugin.Reports.ProductsWithoutDescription.Factories
 {
